@@ -47,21 +47,30 @@ sphere.geometry.setAttribute(
   "uv2",
   new THREE.BufferAttribute(sphere.geometry.attributes.uv.array, 2)
 );
+const parentSphere = new THREE.Mesh(
+  new THREE.SphereGeometry(10, 64, 64),
+  new THREE.MeshBasicMaterial({ color: 0x000ff0, wireframe: true })
+);
+sphere.geometry.setAttribute(
+  "uv2",
+  new THREE.BufferAttribute(sphere.geometry.attributes.uv.array, 2)
+);
 sphere.position.x = -1.5;
 const box = new THREE.Mesh(new THREE.BoxGeometry(0.75, 0.75, 0.75), material);
 box.geometry.setAttribute(
   "uv2",
   new THREE.BufferAttribute(box.geometry.attributes.uv.array, 2)
 );
-const plane = new THREE.Mesh(
-  new THREE.PlaneGeometry(10, 10, 100, 100),
-  material
-);
+
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(7, 7, 100, 100), material);
+
 plane.geometry.setAttribute(
   "uv2",
   new THREE.BufferAttribute(plane.geometry.attributes.uv.array, 2)
 );
-plane.position.y = -1.5;
+
+plane.position.y = -1;
+plane.position.z = 0;
 plane.rotation.x = Math.PI * 0.5;
 
 const torus = new THREE.Mesh(
@@ -73,7 +82,7 @@ torus.geometry.setAttribute(
   new THREE.BufferAttribute(torus.geometry.attributes.uv.array, 2)
 );
 torus.position.x = 1.5;
-scene.add(sphere, plane, torus, box);
+scene.add(sphere, plane, torus, box, parentSphere);
 
 /**
  * Sizes
