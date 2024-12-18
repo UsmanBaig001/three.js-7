@@ -34,6 +34,8 @@ gui.add(ambientLight, "intensity").min(0).max(1).step(0.01);
 const directionalLight = new THREE.DirectionalLight(0x0fffc, 0.5);
 directionalLight.position.set(2, 3, 4);
 scene.add(directionalLight);
+gui.add(directionalLight, "intensity").min(0).max(1).step(0.01);
+gui.add(directionalLight.position, "x").min(-5).max(5).step(0.001);
 // const light = new THREE.PointLight(0xffffff, 0.5);
 // light.position.x = 2;
 // light.position.y = 3;
