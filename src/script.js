@@ -1,7 +1,10 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-
+import * as dat from "lil-gui";
 const textureLoader = new THREE.TextureLoader();
+
+// Debug
+const gui = new dat.GUI();
 
 // const doorColorTexture = textureLoader.load("/textures/door/color.jpg");
 // const doorAlphaTexture = textureLoader.load("/textures/door/alpha.jpg");
@@ -26,20 +29,25 @@ const scene = new THREE.Scene();
  */
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(ambientLight);
+gui.add(ambientLight, "intensity").min(0).max(1).step(0.01);
 
-const light = new THREE.PointLight(0xffffff, 0.5);
-light.position.x = 2;
-light.position.y = 3;
-light.position.z = 4;
-scene.add(light);
+const directionalLight = new THREE.DirectionalLight(0x0fffc, 0.5);
+directionalLight.position.set(2, 3, 4);
+scene.add(directionalLight);
+// const light = new THREE.PointLight(0xffffff, 0.5);
+// light.position.x = 2;
+// light.position.y = 3;
+// light.position.z = 4;
+// scene.add(light);
 
 /**
  * Objects
  */
 
-const material = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
-material.metalness = 0.7;
-material.roughness = 0.2;
+const material = new THREE.MeshStandardMaterial();
+// material.metalness = 0.7;
+material.roughness = 0.4;
+
 material.side = THREE.DoubleSide;
 
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 64, 64), material);
