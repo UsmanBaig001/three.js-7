@@ -37,9 +37,15 @@ scene.add(directionalLight);
 gui.add(directionalLight, "intensity").min(0).max(1).step(0.01);
 gui.add(directionalLight.position, "x").min(-5).max(5).step(0.001);
 
-const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x0000ff, 0.5);
+const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x0000ff, 0.3);
 scene.add(hemisphereLight);
 gui.add(hemisphereLight, "intensity").min(0).max(1).step(0.01);
+
+const pointLight = new THREE.PointLight(0xff9000, 0.5, 10, 2);
+pointLight.position.set(1, 1, 1);
+scene.add(pointLight);
+gui.add(pointLight, "intensity").min(0).max(1).step(0.01);
+gui.add(pointLight.position, "x").min(-5).max(5).step(0.001);
 
 // const light = new THREE.PointLight(0xffffff, 0.5);
 // light.position.x = 2;
